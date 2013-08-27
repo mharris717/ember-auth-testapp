@@ -1,6 +1,5 @@
 // Karma configuration
 // Generated on Fri Jul 05 2013 01:57:57 GMT-0400 (EDT)
-
 module.exports = function(config) {
   config.set({
 
@@ -13,6 +12,9 @@ module.exports = function(config) {
       'vendor/jquery/jquery.js',
       'vendor/handlebars/handlebars.js',
       'vendor/ember/index.js',
+      'vendor/ember-data/index.js',
+      'vendor/ember-auth/dist/ember-auth.js',
+      "vendor/ember-auth-easy/index.js",
       'assets/templates.js',
       'assets/app.js',
       'tests/test_helper.js',

@@ -7,6 +7,23 @@ var App = Ember.Application.create({
   Resolver: Resolver
 });
 
+App.getServerUrl = function () {
+  return "";
+};
+
+App.Store = DS.Store.extend({
+  revision: 11,
+  adapter: 'DS.RESTAdapter'
+});
+
+
+var ops = {requestAdapter: "MyDummy"};
+EmberAuth.setupApp(App,ops);
+
+App.SignInController.reopen({
+  showLoginForm: (function() { return true; }).property()
+});
+
 import routes from 'appkit/routes';
 App.Router.map(routes); // TODO: just resolve the router
 

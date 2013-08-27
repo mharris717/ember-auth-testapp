@@ -4,6 +4,9 @@
     "ember": "http://builds.emberjs.com.s3.amazonaws.com/ember-451cf2b8b241cbf67b6491532520e83b80b5df7a.js",
     "handlebars": "1.0.0",
     "jquery": "~1.9.1",
-    "qunit": "~1.12.0"
+    "qunit": "~1.12.0",
+    "ember-auth-easy": "https://raw.github.com/mharris717/ember-auth-easy/master/dist/ember-auth-easy.js",
+    "ember-data": "http://builds.emberjs.com.s3.amazonaws.com/daily/20130825/ember-data.js",
+    "ember-auth": ""
   }
 }

@@ -15,8 +15,8 @@ module.exports = function(grunt) {
   grunt.registerTask('build',   [
                      'clean:build',
                      'lock',
-                     // Uncomment this line  & `npm install --save-dev grunt-contrib-coffee` for CoffeeScript support.
-                     // 'coffee',
+                     //Uncomment this line  & `npm install --save-dev grunt-contrib-coffee` for CoffeeScript support.
+                     'coffee',
                      'copy:prepare',
                      'transpile',
                      'jshint',
