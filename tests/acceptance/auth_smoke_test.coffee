@@ -8,6 +8,7 @@ module "Auth Smoke",
     Ember.run ->
       App.Auth.get("_session").clear()
       App.Auth.trigger "signOutSuccess"
+      Em.Auth.Request.MyDummy.clearOptsList()
         
 
 test "global exists", ->
@@ -18,19 +19,38 @@ test "App has Auth object", ->
   res = !!App.Auth
   equal res, true
 
-test 'login success - shows email', ->
+loginWith = (email,password) ->
   visit("/")
-  .fillIn(".login-form .email-field input","user@fake.com")
-  .fillIn(".login-form .password-field input","password123")
-  .click(".login-form button").then ->
+  .fillIn(".login-form .email-field input",email)
+  .fillIn(".login-form .password-field input",password)
+  .click(".login-form button")
+
+loginSuccessfully = ->
+  loginWith("user@fake.com","password123")
+
+loginFail = ->
+  loginWith("user@fake.com","passwordwrong")
+
+test 'login success - shows email shorter', ->
+  loginSuccessfully().then ->
     res = $(".user-status").text().match("Signed In as user@fake.com")
     equal res[0],"Signed In as user@fake.com"
+    equal Em.Auth.Request.MyDummy.getOptsList().length,1
+    
+test 'login success - saves token', ->
+  loginSuccessfully().then ->
+    equal App.Auth.get('authToken'),'token123'
 
 test 'login failure', ->
-  visit("/")
-  .fillIn(".login-form .email-field input","bad@fake.com")
-  .fillIn(".login-form .password-field input","password123")
-  .click(".login-form button").then ->
+  loginFail().then ->
     res = $(".user-status").text().match("Signed In")
     equal res,null
-    console.debug App.Auth.get('user')
+    equal Em.Auth.Request.MyDummy.getOptsList().length,1
+
+test 'find after login', ->
+  loginSuccessfully().then ->
+    a = App.Post.find()
+    equal Em.Auth.Request.MyDummy.getOptsList().length,2
+    data = Em.Auth.Request.MyDummy.getOptsList()[1]
+    equal "#{App.getServerUrl()}/posts",data.url
+    equal "token123",data.data.auth_token

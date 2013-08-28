@@ -8,7 +8,7 @@ var App = Ember.Application.create({
 });
 
 App.getServerUrl = function () {
-  return "";
+  return "http://localhost:4567";
 };
 
 App.Store = DS.Store.extend({
@@ -16,6 +16,9 @@ App.Store = DS.Store.extend({
   adapter: 'DS.RESTAdapter'
 });
 
+DS.RESTAdapter.reopen({
+  url: App.getServerUrl()
+});
 
 var ops = {requestAdapter: "MyDummy"};
 EmberAuth.setupApp(App,ops);
@@ -26,5 +29,8 @@ App.SignInController.reopen({
 
 import routes from 'appkit/routes';
 App.Router.map(routes); // TODO: just resolve the router
+
+import post from "appkit/models/post";
+App.Post = post;
 
 export default App;
