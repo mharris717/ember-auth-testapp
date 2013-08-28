@@ -15,3 +15,8 @@ task :authlink do
     `ln -s #{source} #{target}`
   end
 end
+
+task :full_install do
+  v = "vendor#{rand(10000000000)}"
+  `mv vendor #{v} && mkdir vendor && mv #{v}/loader.js vendor && bower install`
+end
