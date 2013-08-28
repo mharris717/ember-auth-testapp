@@ -17,8 +17,6 @@ task :authlink do
 end
 
 task :full_install do
-  puts `npm install`
-
   v = "vendor#{rand(10000000000)}"
   puts `mv vendor #{v} && mkdir vendor && mv #{v}/loader.js vendor && bower install && rm -r #{v}`
 end
