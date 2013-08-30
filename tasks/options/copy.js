@@ -13,7 +13,7 @@ module.exports = {
     {
       expand: true,
       cwd: 'tests/',
-      src: ['**/*.js', '!test_helper.js', '!test_loader.js', '!vendor/**/*.js'],
+      src: ['**/*.js', '!pre_app.js', '!test_helper.js', '!test_loader.js', '!vendor/**/*.js'],
       dest: 'tmp/javascript/tests/'
     }]
   },
@@ -24,7 +24,7 @@ module.exports = {
     files: [{
       expand: true,
       cwd: 'tests/',
-      src: ['index.html', 'test_helper.js', 'test_loader.js', 'vendor/**/*'],
+      src: ['index.html', 'pre_app.js', 'test_helper.js', 'test_loader.js', 'vendor/**/*'],
       dest: 'tmp/public/tests/'
     },
     {

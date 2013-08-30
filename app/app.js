@@ -20,7 +20,12 @@ DS.RESTAdapter.reopen({
   url: App.getServerUrl()
 });
 
-var ops = {requestAdapter: "MyDummy"};
+DS.RESTAdapter.registerTransform('hash',{
+  serialize: function(value) {return value;},
+  deserialize: function(value) {return value;}
+});
+
+var ops = EmberAuth.defaultOps || {baseUrl: App.getServerUrl()};
 EmberAuth.setupApp(App,ops);
 
 App.SignInController.reopen({
