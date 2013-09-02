@@ -4,11 +4,19 @@ var App = Ember.Application.create({
   LOG_ACTIVE_GENERATION: true,
   LOG_VIEW_LOOKUPS: true,
   modulePrefix: 'appkit', // TODO: loaded via config
-  Resolver: Resolver
+  Resolver: Resolver,
+
+  currentPath: '',
+
+  ApplicationController : Ember.Controller.extend({
+      updateCurrentPath: function() {
+          App.set('currentPath', this.get('currentPath'));
+      }.observes('currentPath')
+  })
 });
 
 App.getServerUrl = function () {
-  return "http://localhost:4567";
+  return "http://localhost:8800";
 };
 
 App.Store = DS.Store.extend({

@@ -3,7 +3,7 @@ function Routes() {
   this.resource('posts', function() {
     this.route('new');
   });
-  this.route("register");
+  EmberAuth.setupRouter(this);
 }
 
 export default Routes;

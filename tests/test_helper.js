@@ -24,3 +24,27 @@ Ember.Container.prototype.stub = function(fullName, instance) {
   instance.destroy = instance.destroy || function() {};
   this.cache.dict[fullName] = instance;
 };
+
+helpers = {};
+
+helpers.loginWith = function(email,password) {
+  return visit("/")
+  .fillIn(".login-form .email-field input",email)
+  .fillIn(".login-form .password-field input",password)
+  .click(".login-form button");
+}
+
+helpers.loginSuccessfully = function() {
+  return helpers.loginWith("user@fake.com","password123");
+}
+
+helpers.loginFail = function() {
+  return helpers.loginWith("user@fake.com","passwordwrong");
+}
+
+helpers.register = function(email,password) {
+  return visit("/register")
+  .fillIn(".register-form .email-field input",email)
+  .fillIn(".register-form .password-field input",password)
+  .click(".register-form button");
+}
