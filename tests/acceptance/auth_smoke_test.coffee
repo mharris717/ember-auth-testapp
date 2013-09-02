@@ -54,3 +54,20 @@ test 'find after login', ->
     data = Em.Auth.Request.MyDummy.getOptsList()[1]
     equal "#{App.getServerUrl()}/posts",data.url
     equal "token123",data.data.auth_token
+
+register = (email,password) ->
+  visit("/register")
+  .fillIn(".register-form .email-field input",email)
+  .fillIn(".register-form .password-field input",password)
+  .click(".register-form button")
+
+test "register smoke", ->
+  email = "test@fake.com"
+  password = "p123"
+  register(email,password).then ->
+    equal Em.Auth.Request.MyDummy.getOptsList().length,1
+    data = Em.Auth.Request.MyDummy.getOptsList()[0]
+    console.debug "opts"
+    console.debug data
+    equal data.data.user.email, email
+    equal data.data.user.password, password
