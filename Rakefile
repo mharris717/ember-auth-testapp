@@ -18,7 +18,7 @@ end
 
 task :full_install do
   v = "vendor#{rand(10000000000)}"
-  puts `mv vendor #{v} && mkdir vendor && mv #{v}/loader.js vendor && bower install && rm -r #{v}`
+  puts `mv vendor #{v} && mkdir vendor && mv #{v}/loader.js vendor && bower install && rm -r #{v} && cp vendor/ember/ember.js vendor/ember/index.js`
 end
 
 def run_shell_test(cmd)
