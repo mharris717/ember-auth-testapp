@@ -21,15 +21,15 @@ App.getServerUrl = function () {
 
 App.Store = DS.Store.extend({
   revision: 11,
-  adapter: 'DS.RESTAdapter'
+  adapter: 'DS.FixtureAdapter'
 });
 
 DS.RESTAdapter.reopen({
   url: App.getServerUrl()
 });
 
-var ops = EmberAuth.defaultOps || {baseUrl: App.getServerUrl()};
-EmberAuth.setupApp(App,ops);
+//var ops = EmberAuth.defaultOps || {baseUrl: App.getServerUrl()};
+//EmberAuth.setupApp(App,ops);
 
 import routes from 'appkit/routes';
 App.Router.map(routes); // TODO: just resolve the router
