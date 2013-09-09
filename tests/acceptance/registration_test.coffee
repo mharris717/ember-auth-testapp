@@ -11,7 +11,7 @@ module "Registration",
 test "smoke", ->
   equal 2,2
 
-if true
+if false
   test "register smoke", ->
     email = "test@fake.com"
     password = "p123"
@@ -29,3 +29,18 @@ if true
 
       equal $(".registered").text().trim(),"Successfully Registered"
       equal App.get('currentPath'),'registered'
+
+test "register path", ->
+  email = "test@fake.com"
+  password = "p123"
+  helpers.register(email,password).then ->
+    equal $(".registered").text().trim(),"Successfully Registered"
+    equal App.get('currentPath'),'registered'
+
+test "register data", ->
+  email = "test@fake.com"
+  password = "p123"
+  helpers.register(email,password).then ->
+    u = App.RegisterController.justRegistered
+    equal u.get('email'), email
+    equal u.get('password'), password
