@@ -1,0 +1,1 @@
+EmberAuth.registerOps({requestAdapter: "MyDummy"});

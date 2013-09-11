@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "file": "app.js",
+  "sources": [
+    "tmp/transpiled/app/app.js",
+    "tmp/transpiled/app/models/post.js",
+    "tmp/transpiled/app/routes.js",
+    "tmp/transpiled/app/routes/index.js",
+    "tmp/transpiled/app/routes/posts.js"
+  ],
+  "names": [],
+  "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;AC1CA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACfA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACdA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACZA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K",
+  "sourcesContent": [
+    "define(\"appkit/app\",\n  [\"resolver\",\"appkit/routes\",\"appkit/models/post\"],\n  function(Resolver, routes, post) {\n    \"use strict\";\n\n    var App = Ember.Application.create({\n      LOG_ACTIVE_GENERATION: true,\n      LOG_VIEW_LOOKUPS: true,\n      modulePrefix: 'appkit', // TODO: loaded via config\n      Resolver: Resolver,\n\n      currentPath: '',\n\n      ApplicationController : Ember.Controller.extend({\n          updateCurrentPath: function() {\n              App.set('currentPath', this.get('currentPath'));\n          }.observes('currentPath')\n      })\n    });\n\n    App.getServerUrl = function () {\n      return \"http://localhost:8800\";\n    };\n\n    App.Store = DS.Store.extend({\n      revision: 11,\n      adapter: 'DS.FixtureAdapter'\n    });\n\n    DS.RESTAdapter.reopen({\n      url: App.getServerUrl()\n    });\n\n    //var ops = EmberAuth.defaultOps || {baseUrl: App.getServerUrl()};\n    //EmberAuth.setupApp(App,ops);\n\n    App.Router.map(routes); // TODO: just resolve the router\n\n    App.Post = post;\n\n\n    return App;\n  });",
+    "define(\"appkit/models/post\",\n  [],\n  function() {\n    \"use strict\";\n    var post = DS.Model.extend({\n      body: DS.attr('string'),\n      title: DS.attr('string')\n    });\n\n    post.FIXTURES = [\n      {id: 1, title: \"FUN\"},\n      {id: 2, title: \"More Fun!\"}\n    ];\n\n    return post;\n  });",
+    "define(\"appkit/routes\",\n  [],\n  function() {\n    \"use strict\";\n    function Routes() {\n      // // routes/resources\n      this.resource('posts', function() {\n        this.route('new');\n      });\n\n    }\n\n\n    return Routes;\n  });",
+    "define(\"appkit/routes/index\",\n  [],\n  function() {\n    \"use strict\";\n    var IndexRoute = Ember.Route.extend({\n      model: function() {\n        return ['red', 'yellow', 'blue'];\n      }\n    });\n\n\n    return IndexRoute;\n  });",
+    "define(\"appkit/routes/posts\",\n  [],\n  function() {\n    \"use strict\";\n    var PostsRoute = Ember.Route.extend({\n      model: function() {\n        console.debug(\"PostsRoute model call\");\n        return App.Post.find();\n      }\n    });\n\n\n    return PostsRoute;\n  });"
+  ]
+}
