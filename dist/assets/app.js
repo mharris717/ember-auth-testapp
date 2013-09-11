@@ -3,6 +3,8 @@ define("appkit/app",
   function(Resolver, routes, post) {
     "use strict";
 
+    EmberAuth.registerOps({baseUrl: "http://mharrisdev.com/eaerails"})
+
     var App = Ember.Application.create({
       LOG_ACTIVE_GENERATION: true,
       LOG_VIEW_LOOKUPS: true,
