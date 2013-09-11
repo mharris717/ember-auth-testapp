@@ -19,12 +19,12 @@ define("appkit/app",
     });
 
     App.getServerUrl = function () {
-      return "http://localhost:8800";
+      return "http://mharrisdev.com/eaerails";
     };
 
     App.Store = DS.Store.extend({
       revision: 11,
-      adapter: 'DS.FixtureAdapter'
+      adapter: 'DS.RESTAdapter'
     });
 
     DS.RESTAdapter.reopen({
