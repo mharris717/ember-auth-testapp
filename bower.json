@@ -7,6 +7,7 @@
     "qunit": "~1.12.0",
     "ember-auth-easy": "https://raw.github.com/mharris717/ember-auth-easy/master/dist/ember-auth-easy.js",
     "ember-data": "http://builds.emberjs.com.s3.amazonaws.com/daily/20130825/ember-data.js",
-    "ember-auth": ""
+    "ember-auth": "",
+    "ember-pagination": ""
   }
 }

@@ -21,7 +21,7 @@ App.getServerUrl = function () {
 
 App.Store = DS.Store.extend({
   revision: 11,
-  adapter: 'DS.FixtureAdapter'
+  adapter: 'DS.PaginationFixtureAdapter'
 });
 
 DS.RESTAdapter.reopen({

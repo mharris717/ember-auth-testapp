@@ -11,6 +11,9 @@ task :authlink do
   res["#{dir}/vendor/ember-auth/dist/ember-auth.js"] = 
   "/code/orig/ember-auth/dist/ember-auth.js"
 
+  res["#{dir}/vendor/ember-pagination/index.js"] = 
+  "/code/orig/ember_npm_projects/ember-pagination/dist/ember-pagination.js"
+
   res.each do |target,source|
     `rm #{target}`
     `ln -s #{source} #{target}`

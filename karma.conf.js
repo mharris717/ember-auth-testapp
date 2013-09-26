@@ -15,6 +15,7 @@ module.exports = function(config) {
       'vendor/ember-data/index.js',
       'vendor/ember-auth/dist/ember-auth.js',
       "vendor/ember-auth-easy/index.js",
+      "vendor/ember-pagination/index.js",
       'assets/templates.js',
       'assets/app.js',
       'tests/pre_app.js',
